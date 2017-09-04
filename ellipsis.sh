@@ -8,7 +8,10 @@ pkg.install() {
       if utils.cmd_exists pacman; then
         sudo pacman -Sy --noconfirm gconf gnome-terminal
       fi
-      bash <(curl -s https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)
+      if utils.cmd_exists apt; then
+        sudo apt install -y wget
+      fi
+      wget https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh && . one-dark.sh
       ;;
   esac
 }
